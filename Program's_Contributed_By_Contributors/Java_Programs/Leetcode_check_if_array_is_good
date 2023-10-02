@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isGood(int[] nums) {
+        int max=0;
+        HashMap <Integer,Integer> hm =new HashMap<>();
+
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]>max)
+                max=nums[i];
+                hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
+        }
+        
+        for(HashMap.Entry<Integer,Integer> entry :hm.entrySet())
+        {
+            System.out.println(entry.getKey()+":"+entry.getValue());
+
+        }
+
+        int maxkey=Collections.max(hm.entrySet(), Map.Entry.comparingByValue()).getKey();
+        int maxValueInMap = (Collections.max(hm.values()));
+        System.out.println("MAx val"+maxValueInMap);
+        System.out.println("Maxkey"+maxkey);
+        System.out.println("max"+max);
+        
+        if(nums.length-max==1  && maxValueInMap==2  && maxkey==max)
+            return true;
+        else
+            return false;
+    }
+}
